@@ -69,10 +69,23 @@ Once the skill is installed and enabled, just ask Claude to generate a report. T
 
 ### Workflow
 
-1. **Share your data** — Connect a folder or upload your search engine output files (`.parquet`, `.tsv`, `.csv`, etc.).
-2. **Choose an enzyme** *(optional)* — Claude will ask if you want to filter for fully-specific peptides (e.g., trypsin, lys-c).
+1. **Upload your data** — Claude will ask you to upload your search engine output files. See the supported files table below.
+2. **Specify your enzyme** *(optional)* — Claude will ask if you want to specify the enzyme used to cleave peptides (e.g., trypsin, lys-c).
 3. **Wait for the report** — Claude clones MassSpecSleuth, installs dependencies, and runs the analysis in a sandboxed environment.
 4. **Download** — The HTML report is shared directly in the chat for you to download.
+
+### Supported files by search engine
+
+| Search Engine | Required files | Optional files |
+|---|---|---|
+| **DIA-NN** | `*report*.parquet` or `report.tsv` | `features.tsv`, `fill_times.tsv`, `tic.tsv`, `sn.tsv` |
+| **MaxQuant** | `evidence.txt` | `msms.txt`, `msmsScans.txt`, `allPeptides.txt`, `summary.txt`, `parameters.txt`, `msScans.txt` |
+| **Sage** | `*.sage.tsv` | `lfq.tsv` |
+| **FragPipe** | `psm.tsv` | — |
+| **Jmod** | `all_IDs.csv` or `all_IDs_filtered.parquet` | — |
+| **ProteomeDiscoverer** | `*PSMs*.txt` | `*ProteinGroups*.txt`, `*Proteins*.txt`, `*InputFiles*.txt` |
+
+The tool auto-detects the search engine from the file names — you don't need to specify it.
 
 ### Opening the report
 
